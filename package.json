@@ -1,0 +1,21 @@
+{
+  "name": "playwright-api-framework",
+  "version": "1.0.0",
+  "description": "A scalable API testing framework using Playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --project=api",
+    "test:ui": "npx playwright test --project=ui"
+  },
+  "keywords": [
+    "playwright",
+    "api",
+    "testing"
+  ],
+  "author": "Md Sadman",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.45.3",
+    "dotenv": "^16.4.5"
+  }
+}
