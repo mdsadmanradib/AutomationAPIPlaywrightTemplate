@@ -1,64 +1,57 @@
-Playwright API Testing Framework (Dog API)
+# 🐶 Playwright API Testing Framework (Dog API)
 
-This project is a scalable, maintainable API testing framework built using Playwright's built-in API testing capabilities, now targeting the Dog API.
+This project is a **scalable, maintainable API testing framework** built using **Playwright’s built-in API testing capabilities**, now targeting the **Dog API**.
 
-Features
+---
 
-Playwright Test Runner: Uses the powerful, parallel-ready Playwright test runner.
+## 🚀 Features
 
-TypeScript: Fully written in TypeScript with interfaces based on the OpenAPI spec.
+- **Playwright Test Runner:** Uses Playwright’s powerful, parallel-ready test runner.  
+- **TypeScript:** Fully written in TypeScript with interfaces based on the OpenAPI spec.  
+- **API Service Layer:** A clean, reusable *“Page Object Model”* for your API (see `api/ApiService.ts`) separates API logic from test logic.  
+- **Configuration-based:** `playwright.config.ts` manages different projects (e.g., `api`, `ui`) and base URLs.  
+- **Environment Variables:** Uses `.env` files to store the `BASE_URL`.
 
-API Service Layer: A clean, reusable "Page Object Model" for your API (see api/ApiService.ts) separates API logic from test logic.
+---
 
-Configuration-based: playwright.config.ts manages different projects (e.g., 'api', 'ui') and base URLs.
+## 🧩 Example APIs
 
-Environment Variables: Uses .env files to store the BASE_URL.
-
-Example APIs
-
-This framework is now configured to test the Dog API:
-https://dogapi.dog
+This framework is configured to test the **Dog API**:  
+🔗 [https://dogapi.dog](https://dogapi.dog)
 
 It currently includes tests for:
 
-GET /api/v2/facts (Success 200 OK)
+| Endpoint | Description | Expected Response |
+|-----------|--------------|------------------|
+| `GET /api/v2/facts` | Retrieve dog facts | ✅ 200 OK |
+| `GET /api/v2/breeds` | Retrieve all breeds | ✅ 200 OK |
+| `GET /api/v2/breeds/{id}` | Retrieve breed by ID | ✅ 200 OK / ❌ 404 Not Found |
+| `GET /api/v2/groups` | Retrieve all groups | ✅ 200 OK |
+| `GET /api/v2/groups/{id}` | Retrieve group by ID | ✅ 200 OK / ❌ 404 Not Found |
 
-GET /api/v2/breeds (Success 200 OK)
+---
 
-GET /api/v2/breeds/{id} (Success 200 OK & Failure 404)
+## ⚙️ Setup Required
 
-GET /api/v2/groups (Success 200 OK)
+This framework is very simple and requires **no API keys**.
 
-GET /api/v2/groups/{id} (Success 200 OK & Failure 404)
+### (Optional) Proxy Setup
 
-⚠️ Important: Setup Required
+If you are behind a **corporate network firewall**, your tests might fail (e.g., with `401` or `500` errors).  
+If this happens:
 
-This framework is very simple and requires no API keys.
+1. Open `playwright.config.ts`
+2. Uncomment the proxy block  
+3. Fill in your company’s proxy server details.
 
-(Optional) Proxy Setup:
+---
 
-If you are behind a corporate network firewall, your tests might fail (e.t., with a 401 or 500 error).
+## 🧪 Running Tests
 
-If this happens, open playwright.config.ts, uncomment the proxy block, and fill in your company's proxy server details.
+This framework is configured with two "projects" in `playwright.config.ts`:  
+- `api`  
+- `ui`
 
-Running Tests
-
-This framework is configured with two "projects" in playwright.config.ts: api and ui.
-
-To run only the API tests:
-
+### ▶️ To run only API tests:
+```bash
 npm test
-
-
-(This script is mapped to npx playwright test --project=api)
-
-To run all tests (both API and UI):
-
-npx playwright test
-
-
-Viewing Test Reports
-
-To see the beautiful HTML report after a test run, use this command:
-
-npx playwright show-report
